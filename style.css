@@ -1,0 +1,75 @@
+.todo-notes {
+    position: relative;
+    height: 100vh;
+    margin: auto;
+    box-shadow: 0 0 1em black;
+    max-width: 400px;
+    background: white;
+}
+
+.todo-notes__header {
+    background-color: #8c8cb9;
+    font-size: xx-large;
+    padding: 10px;
+}
+
+.todo-notes__input {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 20px;
+    padding-left: 25px;
+    border: 3px solid gray;
+    color: gray;
+    height: 50px;
+    padding-left: 25px;
+}
+
+.todo-notes__buttons {
+    position: absolute;
+    bottom: 40px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 22%;
+}
+
+.todo-notes__button-save,
+.todo-notes__button-clear {
+    background-color: #8c8cb9;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 4px;
+    font-family: Bad Script;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.todo-notes__newnotes li:nth-child(2n) {
+    background: #dbe1e6;
+}
+
+.todo-notes__lists {
+    background: #ebe4e4;
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.todo-notes__checkbox {
+    margin-right: 4px;
+}
+
+.todo-notes__date {
+    position: absolute;
+    right: 0;
+}
+
+.checked {
+    background-color: green;
+}
