@@ -10,7 +10,7 @@ loadTodoNotes();
 function deleteTodoNotes() {
     for (let span of spans) {
         span.addEventListener("click", function() {
-
+            span.parentElement.remove();
         });
     }
 }
@@ -18,9 +18,16 @@ function deleteTodoNotes() {
 function loadTodoNotes() {
     if (localStorage.getItem('notes')) {
         newNotes.innerHTML = localStorage.getItem('notes');
-        const dateItem = document.querySelector("input[type='date']");
-        dateItem.value = dateItem.getAttribute('data-date');
-        //newNotes.innerHTML = localStorage.getItem('dateValue');
+        const dateItem = document.querySelectorAll("input.todo-notes__date");
+        for (var i = 0; i < dateItem.length; i++) {
+            dateItem[i].value = dateItem[i].getAttribute('data-date');
+        }
+
+        const checkedItem = document.querySelectorAll("input[type='checkbox']");
+        for (var i = 0; i < checkedItem.length; i++) {
+            checkedItem[i].checked = checkedItem[i].getAttribute("checked");
+        }
+
         deleteTodoNotes();
     }
 }
@@ -38,15 +45,14 @@ todoNotesInput.addEventListener("keypress", function(keyPressed) {
 
         dateInput.setAttribute("type", "date");
         dateInput.setAttribute("placeholder", "Date");
-        dateInput.setAttribute("value", "");
         dateInput.classList.add('todo-notes__date');
         lists.classList.add('todo-notes__lists');
         spanElement.classList.add('todo-notes__span');
         checkboxInput.classList.add('todo-notes__checkbox');
         checkboxInput.setAttribute("name", "finished");
         checkboxInput.setAttribute("type", "checkbox");
-        spanElement.append(checkboxInput);
-        newNotes.appendChild(lists).append(spanElement, newTodo);
+        spanElement.append(newTodo);
+        newNotes.appendChild(lists).append(checkboxInput, spanElement);
         lists.append(dateInput);
         deleteTodoNotes();
 
@@ -56,9 +62,27 @@ todoNotesInput.addEventListener("keypress", function(keyPressed) {
 
 
 saveNotes.addEventListener('click', function() {
-    const dateItem = document.querySelector("input[type='date']");
-    const dateInputValue = dateItem.value;
-    dateItem.setAttribute('data-date', dateInputValue);
+    const dateItem = document.querySelectorAll("input.todo-notes__date");
+
+    for (var i = 0; i < dateItem.length; i++) {
+        const dateInputValue = dateItem[i].value;
+
+        dateItem[i].setAttribute('data-date', dateInputValue);
+    }
+
+    const checkedItem = document.querySelectorAll("input[type='checkbox']");
+
+    for (var i = 0; i < checkedItem.length; i++) {
+        const checkboxValue = checkedItem[i].checked;
+
+        if (checkedItem[i].checked) {
+            checkedItem[i].setAttribute("checked", "checked");
+        } else {
+            checkedItem[i].removeAttribute("checked", "checked");
+        }
+    }
+
+
     localStorage.setItem('notes', newNotes.innerHTML);
 
 });
@@ -67,16 +91,4 @@ saveNotes.addEventListener('click', function() {
 clearnotes.addEventListener('click', function() {
     newNotes.innerHTML = "";
     localStorage.removeItem('notes', newNotes.innerHTML);
-});
-
-const checkedItem = document.querySelector("input[type='checkbox']");
-console.log(checkedItem);
-checkedItem.addEventListener('click', function() {
-
-    console.log(checkedItem)
-    if (event.currentTarget.checked) {
-        checkedItem.setAttribute("checked", "checked");
-    } else {
-        checkedItem.removeAttribute("checked", "checked");
-    }
 });
