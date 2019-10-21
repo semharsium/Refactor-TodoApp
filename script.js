@@ -32,8 +32,8 @@ function loadTodoNotes() {
     }
 }
 
-todoNotesInput.addEventListener("keypress", function(keyPressed) {
-    if (keyPressed.which === 13) {
+todoNotesInput.addEventListener('click', function() {
+    if (this.value.length > 0) {
         //creating lists and span when enter is clicked
         const lists = document.createElement("li");
         const spanElement = document.createElement("span");
