@@ -49,6 +49,10 @@
     cursor: pointer;
 }
 
+.todo-notes__newnotes {
+    padding: 0;
+}
+
 .todo-notes__newnotes li:nth-child(2n) {
     background: #dbe1e6;
 }
@@ -60,7 +64,6 @@
     cursor: pointer;
     font-size: 20px;
     list-style: none;
-    padding: 0;
 }
 
 .todo-notes__checkbox {
