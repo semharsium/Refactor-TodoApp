@@ -51,6 +51,7 @@
 
 .todo-notes__newnotes {
     padding: 0;
+    margin: 0;
 }
 
 .todo-notes__newnotes li:nth-child(2n) {
