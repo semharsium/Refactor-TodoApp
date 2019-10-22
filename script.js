@@ -39,6 +39,7 @@ todoNotesInput.addEventListener('click', function() {
         const spanElement = document.createElement("span");
         const dateInput = document.createElement("input");
         const checkboxInput = document.createElement("input");
+        const icon = document.createElement("i");
 
         const newTodo = this.value;
         this.value = " ";
@@ -51,8 +52,9 @@ todoNotesInput.addEventListener('click', function() {
         checkboxInput.classList.add('todo-notes__checkbox');
         checkboxInput.setAttribute("name", "finished");
         checkboxInput.setAttribute("type", "checkbox");
-        spanElement.append(newTodo);
-        newNotes.appendChild(lists).append(checkboxInput, spanElement);
+        icon.classList.add('fas', 'fa-trash-alt');
+        spanElement.append(icon);
+        newNotes.appendChild(lists).append(spanElement, checkboxInput, newTodo);
         lists.append(dateInput);
         deleteTodoNotes();
 

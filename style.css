@@ -79,3 +79,21 @@
 .checked {
     background-color: green;
 }
+
+.fa-pencil-alt {
+    float: right;
+    padding-top: 8px;
+}
+
+.fa-trash-alt {
+    color: #7f7fd5;
+    opacity: 0;
+}
+
+.fa-trash-alt:hover {
+    opacity: 1;
+}
+
+.fa-trash-alt:before {
+    content: "\f2ed";
+}
