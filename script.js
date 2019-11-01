@@ -34,7 +34,7 @@ function loadTodoNotes() {
 
 todoNotesInput.addEventListener('click', function() {
     if (this.value.length > 0) {
-        //creating lists and span when enter is clicked
+        //creating lists and span when mouse is clicked
         const lists = document.createElement("li");
         const spanElement = document.createElement("span");
         const dateInput = document.createElement("input");
