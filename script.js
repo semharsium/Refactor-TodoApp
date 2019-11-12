@@ -1,16 +1,16 @@
 const todoNotesInput = document.querySelector("input[name='todo-notes__input']");
 const newNotes = document.querySelector("ul");
 const lists = document.querySelectorAll("li");
-const spans = document.getElementsByTagName("span");
+const i = document.getElementsByTagName("i");
 const saveNotes = document.querySelector(".todo-notes__button-save");;
 const clearnotes = document.querySelector(".todo-notes__button-clear");
 
 loadTodoNotes();
 
 function deleteTodoNotes() {
-    for (let span of spans) {
-        span.addEventListener("click", function() {
-            span.parentElement.remove();
+    for (let element of i) {
+        element.addEventListener("click", function() {
+            element.parentElement.parentElement.remove();
         });
     }
 }
@@ -35,29 +35,15 @@ function loadTodoNotes() {
 todoNotesInput.addEventListener('click', function() {
     if (this.value.length > 0) {
         //creating lists and span when mouse is clicked
-        const lists = document.createElement("li");
-        const spanElement = document.createElement("span");
-        const dateInput = document.createElement("input");
-        const checkboxInput = document.createElement("input");
-        const icon = document.createElement("i");
+        createElement();
+    }
 
-        const newTodo = this.value;
-        this.value = " ";
+});
 
-        dateInput.setAttribute("type", "date");
-        dateInput.setAttribute("placeholder", "Date");
-        dateInput.classList.add('todo-notes__date');
-        lists.classList.add('todo-notes__lists');
-        spanElement.classList.add('todo-notes__span');
-        checkboxInput.classList.add('todo-notes__checkbox');
-        checkboxInput.setAttribute("name", "finished");
-        checkboxInput.setAttribute("type", "checkbox");
-        icon.classList.add('fas', 'fa-trash-alt');
-        spanElement.append(icon);
-        newNotes.appendChild(lists).append(spanElement, checkboxInput, newTodo);
-        lists.append(dateInput);
-        deleteTodoNotes();
-
+todoNotesInput.addEventListener('keypress', function(keypressed) {
+    if (keypressed.which === 13) {
+        //creating lists and span when enter is pressed
+        createElement();
     }
 
 });
@@ -94,3 +80,29 @@ clearnotes.addEventListener('click', function() {
     newNotes.innerHTML = "";
     localStorage.removeItem('notes', newNotes.innerHTML);
 });
+
+function createElement() {
+    const lists = document.createElement("li");
+    const spanElement = document.createElement("span");
+    const dateInput = document.createElement("input");
+    const checkboxInput = document.createElement("input");
+    const icon = document.createElement("i");
+
+    const newTodo = todoNotesInput.value;
+    console.log(newTodo);
+    todoNotesInput.value = "";
+
+    dateInput.setAttribute("type", "date");
+    dateInput.setAttribute("placeholder", "Date");
+    dateInput.classList.add('todo-notes__date');
+    lists.classList.add('todo-notes__lists');
+    spanElement.classList.add('todo-notes__span');
+    checkboxInput.classList.add('todo-notes__checkbox');
+    checkboxInput.setAttribute("name", "finished");
+    checkboxInput.setAttribute("type", "checkbox");
+
+    spanElement.append(icon);
+    newNotes.appendChild(lists).append(spanElement, checkboxInput, newTodo);
+    lists.append(dateInput);
+    deleteTodoNotes();
+}

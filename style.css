@@ -88,6 +88,7 @@
 .fa-trash-alt {
     color: #7f7fd5;
     opacity: 0;
+    cursor: pointer;
 }
 
 .fa-trash-alt:hover {
