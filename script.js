@@ -100,6 +100,7 @@ function createElement() {
     checkboxInput.classList.add('todo-notes__checkbox');
     checkboxInput.setAttribute("name", "finished");
     checkboxInput.setAttribute("type", "checkbox");
+    icon.classList.add('fas', 'fa-trash-alt');
 
     spanElement.append(icon);
     newNotes.appendChild(lists).append(spanElement, checkboxInput, newTodo);
